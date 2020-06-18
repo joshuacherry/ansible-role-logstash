@@ -1,0 +1,21 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  vars:
+    logstash_override_config_files:
+      - ../files/01-beats-input.conf
+      - ../files/13-nginx-test.conf
+      - ../files/30-elasticsearch-output.conf
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt:
+        update_cache: 'yes'
+        cache_valid_time: '600'
+      when: ansible_distribution == 'Ubuntu'
+
+  roles:
+    - role: java
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"

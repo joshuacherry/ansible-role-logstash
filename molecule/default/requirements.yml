@@ -1,0 +1,5 @@
+---
+# From GitHUb, overriding the name and specifying a tag
+- src: https://github.com/geerlingguy/ansible-role-java.git
+  version: master
+  name: java

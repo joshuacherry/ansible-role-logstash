@@ -1,0 +1,38 @@
+---
+- name: Create Logstash configuration files.
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/logstash/conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - 01-beats-input.conf
+    - 30-elasticsearch-output.conf
+  notify: restart logstash
+  when: logstash_override_config_files|length == 0
+
+- name: Create Logstash filters.
+  copy:
+    src: "filters/{{ item }}"
+    dest: "/etc/logstash/conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - 10-syslog.conf
+    - 11-nginx.conf
+    - 12-apache.conf
+  notify: restart logstash
+  when: logstash_override_config_files|length == 0
+
+- name: Create Logstash filters when override is used.
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/logstash/conf.d/{{ item | basename }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ logstash_override_config_files }}"
+  notify: restart logstash
+  when: logstash_override_config_files|length > 0
