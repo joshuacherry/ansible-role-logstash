@@ -15,3 +15,8 @@ logstash_install_plugins:
   - logstash-filter-multiline
 
 logstash_override_config_files: []
+
+queue.type: persisted
+
+logstash_config:
+  queue.type: memory
