@@ -2,7 +2,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/joshuacherry/ansible-role-logstash.svg?branch=master)](https://travis-ci.org/joshuacherry/ansible-role-logstash)
-[![Build Status](https://dev.azure.com/cherrj2/ansible-role-logstash/_apis/build/status/joshuacherry.ansible-role-logstash?branchName=master)](https://dev.azure.com/cherrj2/ansible-role-logstash/_build/latest?definitionId=1&branchName=master)
 ![Ansible](https://img.shields.io/badge/ansible-2.8-blue.svg)
 ![Ansible](https://img.shields.io/badge/ansible-2.9-blue.svg)
 
